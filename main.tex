@@ -1,0 +1,414 @@
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.3, 10 May 2020) written by LianTze Lim (liantze@gmail.com). Now compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
+% (v1.6.5c, 27 Jun 2023) forked by Nicolás Omar González Passerino (nicolas.passerino@gmail.com)
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
+
+%% If you need to pass whatever options to xcolor
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+%% If you are using \orcid or academicons
+%% icons, make sure you have the academicons
+%% option here, and compile with XeLaTeX
+%% or LuaLaTeX.
+% \documentclass[10pt,a4paper,academicons]{altacv}
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
+%% Fork (before v1.6.5a): CV dark mode toggle enabler to use a inverted color palette.
+%% Use the "darkmode" option if you want a color palette used to 
+% \documentclass[10pt,a4paper,ragged2e,withhyper,darkmode]{altacv}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+
+%% AltaCV uses the fontawesome5 and academicons fonts
+%% and packages.
+%% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
+
+%% Fork v1.6.5c: Overwriting sloppy environment to ignore any spaces and be used to solve overlapping cvtags
+\newenvironment{sloppypar*}{\sloppy\ignorespaces}{\par}
+
+% Change the page layout if you need to
+\geometry{left=1.2cm,right=1.2cm,top=1cm,bottom=1cm,columnsep=0.75cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Fork (before v1.6.5a): Change the color codes to test your personal variant on any mode
+\ifdarkmode%
+  \definecolor{PrimaryColor}{HTML}{C69749}
+  \definecolor{SecondaryColor}{HTML}{D49B54}
+  \definecolor{ThirdColor}{HTML}{1877E8}
+  \definecolor{BodyColor}{HTML}{ABABAB}
+  \definecolor{EmphasisColor}{HTML}{ABABAB}
+  \definecolor{BackgroundColor}{HTML}{191919}
+\else%
+  \definecolor{PrimaryColor}{HTML}{001F5A}
+  \definecolor{SecondaryColor}{HTML}{0039AC}
+  \definecolor{ThirdColor}{HTML}{F3890B}
+  \definecolor{BodyColor}{HTML}{666666}
+  \definecolor{EmphasisColor}{HTML}{2E2E2E}
+  \definecolor{BackgroundColor}{HTML}{FFFFFF}
+\fi%
+
+\colorlet{name}{PrimaryColor}
+\colorlet{tagline}{SecondaryColor}
+\colorlet{heading}{PrimaryColor}
+\colorlet{headingrule}{ThirdColor}
+\colorlet{subheading}{SecondaryColor}
+\colorlet{accent}{SecondaryColor}
+\colorlet{emphasis}{EmphasisColor}
+\colorlet{body}{BodyColor}
+\pagecolor{BackgroundColor}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\small\bfseries}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% sample.bib contains your publications
+{main.bib}
+
+\begin{document}
+    \name{Victoria Sommer}
+    \tagline{Cloud Security Specialist  \& Penetration tester}
+    %% You can add multiple photos on the left or right
+    \photoL{4cm}{vic_image}
+
+    \personalinfo{
+        \email{vicnovtseva@pm.me}\smallskip
+        \phone{+45 61545330}
+        \location{3520 Farum}\\
+        \linkedin{novtseva}
+        \github{}
+        %\homepage{nicolasomar.me}
+        %\medium{nicolasomar}
+        %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
+        % \orcid{0000-0000-0000-0000}
+        %% You can add your own arbtrary detail with
+        %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+        % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+        %% Or you can declare your own field with
+        %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+        % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+        % \gitlab{your_id}
+    }
+    
+    \makecvheader
+    %% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+    % \AtBeginEnvironment{itemize}{\small}
+    
+    %% Set the left/right column width ratio to 6:4.
+    \columnratio{0.28}
+
+    % Start a 2-column paracol. Both the left and right columns will automatically
+    % break across pages if things get too long.
+    \begin{paracol}{2}
+        % ----- TECH STACK -----
+        \cvsection{Tech Stack}
+            %% Fork v1.6.5c: The sloppypar* environment is used to avoid tags overlapping with section width
+            \begin{sloppypar*}
+                \cvtags{AWS Cloud Services, Microsoft Defender, Azur, Model Integration, API Deployment} 
+                \medskip
+                
+                \cvtags{Python Programming,\texttt{C\#},Bash, Powershell, JavaScript, RQL}                 
+                \medskip
+
+                \cvtags{Metasploit, Nmap, HashCat, Wireshark, Burp Suite, SQLmap, Nessus}
+                \medskip
+                
+                \cvtags{Kali Linux, MacOS, AD, Security monitoring, AWS optimization}
+                \medskip
+  
+            \end{sloppypar*}
+        % ----- TECH STACK -----
+        
+        % ----- LEARNING -----
+
+        % ----- LEARNING -----
+        
+        % ----- LANGUAGES -----
+        \cvsection{Languages}
+         \cvlang{Russian}{Mothertongue}\\
+            \smallskip
+        \cvlang{English}{Fluent}\\
+            \smallskip
+             \cvlang{Danish}{Fluent}\\
+               \smallskip
+           
+        
+            \cvlang{German}{Intermediate}
+
+            %% Yeah I didn't spend too much time making all the
+            %% spacing consistent... sorry. Use \smallskip, \medskip,
+            %% \bigskip, \vpsace etc to make ajustments.
+        % ----- LANGUAGES -----
+            
+        % ----- REFERENCES -----
+
+        \cvsection{References}
+        \cvachievement{\faCircle}{ Simon Thornton }{\textbf{Head of Cyber Detection and response at LEGO}}
+                 \divider
+           \begin{itemize}
+               \item {{simon-linkedin1@eazimail.com}
+               \item {+32-474991058}
+               \item {\href{http://thornton.info/}{Linkedin profile}}
+               \item {\href{https://thornton.info}{Website}}
+           \end{itemize}
+       
+         \newpage
+
+          \cvachievement{\faCircle}{Casper Stenberg Nielsen}
+        {\textbf{Senior Product Manager - LEGO}}
+                 \divider
+    \begin{itemize}
+               \item {casperantonnielsen@gmail.com}
+               \item {+45 28 99 51 02}
+        \item {\href{https://linkedin.com/in/casperantonstenbergnielsen}{Linkedin profile}}
+           \end{itemize}
+  \divider\\
+           \cvachievement{\faCircle}{Martin Bahn ejvang}
+        {\textbf{Senior Cloud Security Architect  - Novo Nordisk}}
+                 \divider
+    \begin{itemize}
+               \item {ceasec@gmail.com}
+               \item {+45 30 79 43 00}
+        \item {\href{https://linkedin.com/in/martin-bahn-ejvang}{Linkedin profile}}
+           \end{itemize}
+  \divider\\
+  \cvachievement{\faCircle}{Rena Bøgh}
+        {\textbf{Butiksleder Røde Kors Butik Lyngby
+  - Red Cross}}
+                 \divider
+    \begin{itemize}
+               \item {lyngby.al.butik@rødekors.dk}
+               \item {+45 91 33 86 15}
+        \item {\href{https://lyngby-taarbaek.drk.dk/rode-kors-genbrugsbutikker-i-lyngby-taarbaek/genbrug/}{Website}}
+           \end{itemize}
+
+      
+        
+        % ----- REFERENCES -----
+       %cvref\{Digital Security at LEGO \ Simon Thornton}{Head of Cyber Detection and response}
+        % ----- MOST PROUD -----
+        \cvsection{Strengths}
+        \cvachievement{\faUsers}{Integrity}{Seeking justice for all}
+        \divider\\
+        \cvachievement{\faPeopleArrows}{Collaborator}{It's great to help each other out!}
+        \divider\\
+        \cvachievement{\faGraduationCap}{Lifelong learner}{A scientist at heart, I am open-minded and love to learn new things}
+        % ----- MOST PROUD -----
+      
+        \cvsection{Volunteering}
+\cvachievement{\faBook}{Advocate and social events organizer}{\href{https://www.autismeungdom.dk}{Autisme Ungdom} 2023--}
+         \cvachievement{\faPeopleArrows}{Red Cross Volunteer}{\href{https://lyngby-taarbaek.drk.dk/rode-kors-genbrugsbutikker-i-lyngby-taarbaek/genbrug/}{Lyngby Second Hand Red Cross Shop} 2022-2023}
+        \cvachievement{\faUsers}{Coordinator}{\href {https://www.dtu.dk/english/education/undergraduate/new-at-dtu-bsc/intro-days DTU PF Introduction Week 2021--2022}{DTU International Masters Introduction Week} 2022-2023}
+        \cvachievement{\faFemale}{Executive Board Member} {\href{ https://www.hypatia.dk/?lang=da}{Hypatia}   2020--2022}
+         \divider\\
+
+        
+
+    \cvsection{Certifications}
+       \cvachievement{\faTrophy}{WithSecure Cyber Security Academy 2023}{WithSecure 03/2023}
+         \divider\\
+     
+         \cvachievement{\faGraduationCap}{Google Cybersecurity Specialisation}{Coursera 02/2024}
+     \divider\\
+      \cvachievement{\faCloud}{AWS Cloud Solutions Architect}{Coursera 02/2024}
+   \divider\\
+            \cvachievement{\faGlasses}{Cyber Threat Intelligence}{IBM 02/2024}
+               \divider\\
+             \cvachievement{\faBook}{Ethical Hacking Essentials Course}{EC-Council 02/2024}
+          \divider\\
+             \cvachievement{\faFile}{Foundation Level Threat Intelligence Analyst}{arcX 01/2024}
+          \divider\\
+
+             \cvachievement{\faCircle}{Microsoft Security Immersion Completion}{Microsoft 12/2023}
+\divider\\
+            \cvachievement{\faCloud}{Introduction to Dark Web, Anonymity, and Cryptocurrency}{EC-Council - 01/2024}
+ \divider\\
+                \cvachievement{\faGlasses}{SQL Injection Attacks}{EC-Council-01/2024}
+
+        % use ONLY \newpage if you want to force a page break for
+        % ONLY the current column
+        \newpage
+        
+        %% Switch to the right column. This will now automatically move to the second
+        %% page if the content is too long.
+        \switchcolumn
+        
+        % ----- ABOUT ME -----
+        \cvsection{About Me}
+        
+  % \begin{quote}
+   
+  \textit{As a Cloud Security Specialist with a background in Threat Intelligence and IT support, I proactively manage threats, enhance security frameworks, and integrate robust measures into business operations. My expertise in cybersecurity, risk analysis, and technical support enables me to drive digital resilience and foster a security-aware culture in innovative and inclusive environments.  }
+
+% \end{quote}
+ \cvsection{Education}
+           
+            
+         \cvevent{Stud. Polyt. \ Physics and Nanotechnology (60 ECTS)}{Danish Technical University (DTU)} {08/2020 -- 11/2022 } {Lyngby, Denmark}
+
+         
+            \divider
+            
+ \cvevent{Master of Science, Physics}{Center for Quantum Devices, University of Copenhagen}{09/2017 -- 10/2019}{Copenhagen, Denmark}
+            \begin{itemize}
+                \item Specialization: Condensed Matter Experiments, Quantum Information
+                \item Average grade: A (Danish grade: 11.8)
+            \end{itemize}
+            
+                      \divider
+            \cvevent{Bachelor of Science, Physics}{University of Copenhagen}{09/2014 -- 08/2018}{Copenhagen, Denmark}                       
+            \begin{itemize}
+                \item Average grade: 10/20
+                \item Specialization: Quantum Physics, Computer Science
+            \end{itemize}
+            
+            \divider
+            
+            \cvevent{EAP Exchange }{University of Califoria, Berkeley}{09/2016-- 06/2017}{California, USA}    
+            
+        % ----- ABOUT ME -----
+
+        \cvsection{A Day of My Life}
+        
+       
+       % \wheelchart{outer radius}{inner radius}{ comma-separated list of value/text width/color/detail}
+      \wheelchart{1.5cm}{0.5cm}{%
+        6/8em/accent!30/{Sleep, beautiful sleep},
+       3/8em/accent!40/Bounty Hunting and CTFs,
+         8/8em/accent!60/Daytime job fighting hackers,
+          2/10em/accent/OSINT research,
+         5/6em/accent!20/Quality time with family and friends and cats
+      }
+        
+\newpage        
+        % ----- EXPERIENCE -----
+        \cvsection{Experience}
+        
+                    \cvevent{Threat Intelligence Analyst}{ Digital Security -  LEGO}{10/2024 -- 04/2025}{Copenhagen, Denmark}{
+            
+  
+            \begin{itemize}
+                \item \textbf{Incident Response and Threat Management}:
+                	
+	 \item \textbf{Spearheaded threat hunting initiatives}  using advanced detection methodologies and telemetry analysis, uncovering hidden risks and elevating LEGO’s situational awareness of emerging threats.
+	 \item \textbf{Assessed and strengthened security postures}  across cloud environments, evaluating configurations and implementing improvements to align with best practices, compliance requirements, and risk tolerance thresholds.
+	 \item \textbf{Performed detailed forensic analysis}and threat correlation, synthesizing data from monitoring platforms, log sources, and external intelligence feeds to identify indicators of compromise and support root-cause investigations.
+	 \item  \textbf{Collaborated closely with cross-functional stakeholders} , including infrastructure, development, and business units, to translate risk findings into actionable security improvements, mitigation plans, and long-term defensive strategies.
+	 \item \textbf{Prepared and communicated risk assessments}, incident reports, and security status updates to technical and non-technical audiences, ensuring shared understanding of threats, impacts, and recommended actions.\textit{See Appendix 1\ref{Report}}
+     \item \textbf{Maintained and enhanced security tooling and automation}, contributing to tuning of detection rules and integration of telemetry sources that improved coverage and reduced time to detect threats.
+            \end{itemize}  
+            } 
+
+      \divider
+            \cvevent{Cloud Security Specialist}{Global Information Security - Novo Nordisk}{11/2023 -- 07/2024}{Ballerup, Denmark}{
+                 \divider
+                \begin{itemize}
+                    \item \textbf{Security Configuration Assessment}: Collaborated with various business units to evaluate and optimize security configurations, ensuring robust defense mechanisms across all cloud platforms, including IaaS, PaaS, and FaaS.
+                      \item \textbf{Strategize and Enhance Cloud Security}: Spearheaded the development and implementation of a comprehensive Cloud Security Operations strategy to enhance data protection and mitigate risks.
+                       \item \textbf{Support and Optimization of Cloud Initiatives}: Actively supported key cloud initiatives, focusing on data analytics and CI/CD infrastructure, to drive operational efficiency and innovation.
+                    \item \textbf{Troubleshooting and Problem Resolution}: Resolved complex technical issues, maintaining system integrity and functionality, minimizing downtime and disruption.
+                    \item \textbf{Data Monitoring and Analysis}: Enhanced monitoring practices to analyze reporting data more effectively, gaining insights that drive strategic security decisions
+                    \item \textbf{Maintenance of Security Tools}: Managed the configuration, operation, and maintenance of critical cloud security tools, ensuring optimal performance and security compliance.
+                
+                \end{itemize}
+
+            } 
+            \divider
+            \cvevent{Associate Security Consultant}{Consulting - WithSecure}{03/2023 -- 10/2023}{Copenhagen, Denmark}{
+                \begin{itemize}
+            \item \textbf{Comprehensive Security Assessments}: Conducted thorough security evaluations for clients across multiple sectors, including finance, gambling, critical infrastructure, and globally recognized brands. Tailored assessments covered web applications, server deployments, mobile applications, and corporate infrastructure, ensuring all aspects of client security were rigorously tested and fortified.
+             \item \textbf{Client Engagement and Project Scoping}: Initiated and led scoping discussions with clients to identify and align security projects with their specific business concerns, ensuring targeted and effective security solutions.
+             \item \textbf{Advanced Simulation Exercises}: Engaged actively in Red Team operations and Targeted Attack Simulations, designing and executing complex security breach scenarios to test and strengthen client defenses.
+             \item \textbf{Vulnerability Identification and Exploitation}: Developed expertise in identifying and exploiting security vulnerabilities, enhancing my practical skills in attack methodologies and defensive strategies.
+                \end{itemize}
+                
+            }
+            \divider
+            \cvevent{IT Supporter}{KU IT - University of Copenhagen}{07/2020 -- 11/2022}{Copenhagen, Denmark}{
+                \begin{itemize}
+                \item \textbf{Enhanced IT Support Services}: Delivered outstanding IT support, significantly improving service quality for university students and employees and ensuring seamless technology experiences.
+                \item \textbf{Infrastructure Setup and Maintenance}: Configured and maintained critical IT infrastructure, including Wi-Fi, VPN, and Multi-Factor Authentication (MFA) systems, enhancing network security and reliability for all users.
+                \item \textbf{Technical Assistance and User Support}: Provided expert support for the Office suite, Zoom, and network drives, as well as Android and iOS devices, ensuring high levels of user satisfaction and operational efficiency.
+                \item \textbf{System Configuration and Management}: Successfully reinstalled and configured enterprise images on both Windows and Mac computers, optimizing system performance and user productivity.
+                \item \textbf{Documentation and Process Improvement}: Meticulously documented technical cases and solutions in the internal IT Service Management (ITSM) system, improving knowledge management and support processes.
+                \item \textbf{Cybersecurity Education}: Proactively advised users on best security practices, contributing to a safer computing environment and increasing awareness of cybersecurity across the university community.
+                \end{itemize}
+            
+            
+        % ----- EXPERIENCE -----
+        
+        % ----- EDUCATION -----
+        
+        % ----- CERTIFICATIONS -----
+        %\cvsection{Certifications}
+        
+             
+        
+             
+          
+             
+          
+             
+ %\cvevent{ Introduction to Dark Web Operations}{Security Blue Team}{06/2023}{}
+      
+        % ----- SCHOLARSHIPS -----
+      \cvsection{Research Experience}
+     \cvevent{Fabrication of a Biochip Substrate for High-throughput Automated Patch Clamping (10 ECTS)}{DTU Nanolab \& Sophion }{01/2021 -- 03/2022}{Lyngby}
+
+\divider
+
+         \cvevent{Research Project: Double Nanowires for Topological Quantum Computing }{Center for Quantum Devices, UCPH}{11/2018 -- 02/2020}{Copenhagen}
+    \begin{itemize}
+      \item Publication: DOI 10.1038/s42005-020-0392-5
+   
+\end{itemize}
+   \divider
+   \cvevent{Research Project: "SpaceMoss -- Using synthetic biology for space exploration"}{Synthetic Biology Center, UCPH}{2015}{Copenhagen}  
+\begin{itemize}
+     \item iGEM 2015 competition at MIT, Boston, US (300 teams from over 100 countries): Gold medal, nomination for "Best Environmental project".
+    
+     \end{itemize}
+        \divider
+        
+        \cvevent{Optimisation Code in Python for Sidebanding the Readout of a Superconducting Gatemon Qubit (5 ECTS)}{Center for Quantum Devices,  KU}{07/2018 -- 11/2018}{Copenhagen}
+    
+        % ----- PROJECTS -----
+           { 
+           }
+        % ----- PROJECTS -----
+    \end{paracol}
+\end{document}
